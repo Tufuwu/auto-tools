@@ -12,10 +12,10 @@ def get_fund_info(fund_code):
         response.raise_for_status()  # 检查请求是否成功
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        return soup
+     
         # 获取基金名称
-        fund_name = soup.find("div", class_="fundDetail-tit").get_text(strip=True)
-
+        fund_name = soup.find("div", class_="fpoptableWrap").get_text(strip=True)
+        return  fund_name
         # 获取单位净值、日增长率
         data_item = soup.find("dl", class_="dataItem02")
         net_value = data_item.find("dd", class_="dataNums").find("span").get_text(strip=True)  # 单位净值
