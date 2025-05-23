@@ -18,7 +18,8 @@ def get_fund_real_time_estimation(fund_code):
         # 去除回调函数包装，如 jsonpgz({...});
         json_str = raw[raw.index("{") : raw.rindex("}") + 1]
         data = json.loads(json_str)
-        return data.get('name'),data.get('gszzl')  # 包含 name、gsz（估算净值）、gztime（估值时间）等字段
+
+        return data.get('name'),data.get('gszzl'),data.get('gztime')  # 包含 name、gsz（估算净值）、gztime（估值时间）等字段
     except Exception as e:
         print("实时接口请求失败:", e)
         return None
@@ -31,6 +32,6 @@ if __name__ == "__main__":
     for index, row in df.iterrows():
         fund_name = row['name']
         fund_number = row['number']
-        fund_info,fund_hold = get_fund_real_time_estimation(fund_number)
-        print(fund_info,fund_hold)
-
+        fund_info,fund_hold,data_time = get_fund_real_time_estimation(fund_number)
+        print(fund_info,fund_hold,data_time)
+        
