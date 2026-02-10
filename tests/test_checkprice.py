@@ -17,10 +17,9 @@ def run(csv_file, base_dir):
 
             # 构造一行可读日志
             line = (
-                f"name={fund_info or fund_name}, "
-                f"code={fund_number}, "
-                f"estimate={fund_hold}, "
-                f"time={data_time}\n"
+                f"{fund_info or fund_name}, "
+                f"{fund_hold}, "
+                f"{data_time}\n"
             )
 
             print(line.strip())
@@ -30,4 +29,4 @@ def run(csv_file, base_dir):
 if __name__ == "__main__":
     base_dir = Path(__file__).parent.parent
     csv_file = base_dir/'autotools'/"resources"/'target_csv.csv'
-    run(csv_file)
+    run(csv_file,base_dir)
