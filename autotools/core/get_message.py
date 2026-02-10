@@ -4,6 +4,14 @@ import pandas as pd
 import re
 import json
 
+def run(csv_file):
+    df = pd.read_csv(csv_file, dtype={'number': str})
+    for index, row in df.iterrows():
+        fund_name = row['name']
+        fund_number = row['number']
+        fund_info,fund_hold,data_time = get_fund_real_time_estimation(fund_number)
+        print(fund_info,fund_hold,data_time)
+
 def get_fund_real_time_estimation(fund_code):
     url = f"https://fundgz.1234567.com.cn/js/{fund_code}.js"
     headers = {
@@ -26,12 +34,5 @@ def get_fund_real_time_estimation(fund_code):
 
 
 
-if __name__ == "__main__":
-    csv_file = "D:/vscode/3/auto-tools/check_stone_price/target_csv.csv"
-    df = pd.read_csv(csv_file, dtype={'number': str})
-    for index, row in df.iterrows():
-        fund_name = row['name']
-        fund_number = row['number']
-        fund_info,fund_hold,data_time = get_fund_real_time_estimation(fund_number)
-        print(fund_info,fund_hold,data_time)
+
         
