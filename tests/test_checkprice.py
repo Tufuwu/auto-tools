@@ -2,7 +2,9 @@ from autotools.core.get_message import get_fund_real_time_estimation
 import pandas as pd
 from pathlib import Path
 
-def test(csv_file, base_dir):
+def test():
+    base_dir = Path(__file__).parent.parent
+    csv_file = base_dir/'autotools'/"resources"/'target_csv.csv'
     df = pd.read_csv(csv_file, dtype={'number': str})
 
     save_path = Path(base_dir) / 'autotools' / 'resources' / 'message.txt'
@@ -24,9 +26,3 @@ def test(csv_file, base_dir):
 
             print(line.strip())
             f.write(line)
-
-
-if __name__ == "__main__":
-    base_dir = Path(__file__).parent.parent
-    csv_file = base_dir/'autotools'/"resources"/'target_csv.csv'
-    test(csv_file,base_dir)
