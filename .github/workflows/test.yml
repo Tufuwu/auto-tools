@@ -45,3 +45,5 @@ jobs:
           git diff --cached --quiet || git commit -m "Update fund message.txt"
 
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
